@@ -66,6 +66,24 @@ class Interfaz {
         const presupuestoRestanteUsuario = cantidadPresupuesto.presupuestoRestante(cantidad);
 
         restante.innerHTML = `${presupuestoRestanteUsuario}`;
+    
+        this.comprobarPresupuesto();
+    }
+    // Cambia de color el presupuesto restante
+    comprobarPresupuesto() {
+        const presupuestoTotal = cantidadPresupuesto.presupuesto;
+        const presupuestoRestante = cantidadPresupuesto.restante;
+
+        // Comprobar el 25%
+        if((presupuestoTotal / 4) > presupuestoRestante) {
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-success', 'alert-warning');
+            restante.classList.add('alert-danger');
+        } else if((presupuestoTotal / 2) > presupuestoRestante) {
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-success');
+            restante.classList.add('alert-warning');
+        }
     }
 }
 
